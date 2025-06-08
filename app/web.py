@@ -1,5 +1,5 @@
 import streamlit as st
-import functions
+import app.functions as functions
 
 todos = functions.get_todos()
 
@@ -8,7 +8,7 @@ def add_todo():
     # session_state is dict
     # it contains widgets values, if it has key
     new_todo = st.session_state["new todo"]
-    todos.append(new_todo + '\n')
+    todos.append(new_todo + "\n")
     functions.write_todos(todos)
 
 
@@ -26,10 +26,12 @@ for index, todo in enumerate(todos):
 
 # label is not optional parameter
 # after calling add_todo the whole script will run
-st.text_input(label="Enter a todo",
-              label_visibility="hidden",
-              placeholder="Add new todo...",
-              on_change=add_todo,
-              key="new todo")
+st.text_input(
+    label="Enter a todo",
+    label_visibility="hidden",
+    placeholder="Add new todo...",
+    on_change=add_todo,
+    key="new todo",
+)
 
 # st.session_state
